@@ -10,6 +10,10 @@ class UrlEndPointGenerator {
             return UrlEndPointGenerator.BaseEndPointUrl() + "/character";
         }
     }
+
+    static GetIndividualCharacterUrl(id) {
+        return UrlEndPointGenerator.BaseEndPointUrl() + "/character/" + id;
+    }
 }
 
 export default UrlEndPointGenerator;

@@ -49,7 +49,7 @@ class Character extends Component {
     }
 
     processRowClick(character) {
-        console.log(character);
+        this.setState({ "CharacterRedirectId" : character.id });
     }
 
     render() {

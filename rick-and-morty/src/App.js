@@ -3,6 +3,7 @@ import { HashRouter, Route } from "react-router-dom";
 import { Container, Nav, NavItem, NavLink } from "reactstrap";
 import Character from "./Character";
 import Dashboard from "./Dashboard";
+import IndividualCharacter from "./IndividualCharacter";
 import "./App.css";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <HashRouter>
         <Route exact={true} path="/" component={Dashboard}/>
         <Route exact={true} path="/characters" component={Character}/>
+        <Route exact={true} path="/character/:id" component={IndividualCharacter}/>
       </HashRouter>
     </Container>
   );

@@ -72,5 +72,11 @@ Main entry point for this app, includes routing objects
 ## Dashboard.js
 Main Dashboard or default route target
 
+## Character.js
+Table view of all Rick and Morty characters
+
+## IndividualCharacter.js
+View for an individual character, using react card
+
 ## api_call/UrlEndPointGenerator.js
 Used to generate the URL endpoints that we call in a way that makes the code look a little more presentable (at least I think so)
