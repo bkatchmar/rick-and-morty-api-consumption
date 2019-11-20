@@ -38,3 +38,27 @@ and back in `package.json` I add
 ```
 
 to the `scripts` setting.
+
+This largely means once I open a git shell and run `npm run deploy` I can push to the Git pages URL at any time. Real cool stuff!
+
+# NPM Libraries Used
+To help me with building this application, naturally, I used a variety of packages that I install via npm.
+
+```
+npm install --save bootstrap
+npm install --save reactstrap react react-dom
+npm install --save react-router-dom
+```
+
+## reactstrap
+This is basically Bootstrap with React Components to make using Bootstrap even easier, perfect for getting a base style structure out of the way.
+
+# Concepts Covered in this Repo
+The main purpose of this repository is to cover as many concepts as I can regarding ReactJS to show my aptitude for the technology.
+
+# Files In This Repo
+## App.js
+Main entry point for this app, includes routing objects
+
+## Dashboard.js
+Main Dashboard or default route target
