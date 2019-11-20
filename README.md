@@ -19,7 +19,7 @@ npx create-react-app rick-and-morty
 Afterwards, I proceeded to make some changes to some files in order to help prepare for the GitHub deployment. I added into the `package.json` file the following:
 
 ```
-"homepage":"https://github.com/bkatchmar/rick-and-morty-api-consumption",
+"homepage":"https://bkatchmar.github.io/rick-and-morty-api-consumption",
 ```
 
 This is the URL in GitHub I intend to store this.
