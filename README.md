@@ -48,10 +48,14 @@ To help me with building this application, naturally, I used a variety of packag
 npm install --save bootstrap
 npm install --save reactstrap react react-dom
 npm install --save react-router-dom
+npm install --save axios
 ```
 
 ## reactstrap
-This is basically Bootstrap with React Components to make using Bootstrap even easier, perfect for getting a base style structure out of the way.
+This is basically Bootstrap with React Components to make using Bootstrap even easier, perfect for getting a base style structure out of the way. [More Info](https://reactstrap.github.io/).
+
+## axios
+We use this to make our API calls.
 
 # Concepts Covered in this Repo
 The main purpose of this repository is to cover as many concepts as I can regarding ReactJS to show my aptitude for the technology.
