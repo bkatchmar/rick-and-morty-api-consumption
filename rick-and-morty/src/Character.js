@@ -1,18 +1,21 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { Container, Table, Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import UrlEndPointGenerator from "./api_call/UrlEndPointGenerator";
+import "./Character.css"
 
 class Character extends Component {
     constructor(props) {
         super(props);
-        this.state = { "CurrentPage" : 1, "Pages" : [1], "Characters" : [] };
+        this.state = { "CharacterRedirectId" : 0, "CurrentPage" : 1, "Pages" : [1], "Characters" : [] };
     }
 
     componentDidMount() {
         let that = this;
         axios.get(UrlEndPointGenerator.GetCharactersUrl()).then(resp => {
             that.setState({
+                "CharacterRedirectId" : 0,
                 "CurrentPage" : 1,
                 "Pages" : that.processNewPaginationArray(resp.data.info.pages),
                 "Characters" : resp.data.results
@@ -22,19 +25,18 @@ class Character extends Component {
         });
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
-
     getNewPage(pg) {
         let that = this;
         axios.get(UrlEndPointGenerator.GetCharactersUrl(pg)).then(resp => {
             that.setState({
+                "CharacterRedirectId" : 0,
                 "CurrentPage" : pg,
                 "Pages" : that.processNewPaginationArray(resp.data.info.pages),
                 "Characters" : resp.data.results
             });
         }).catch(error => {
             console.log(error);
-            that.setState({ "CurrentPage" : 1, "Pages" : [1], "Characters" : [] });
+            that.setState({ "CharacterRedirectId" : 0, "CurrentPage" : 1, "Pages" : [1], "Characters" : [] });
         });
     }
 
@@ -46,7 +48,13 @@ class Character extends Component {
         return rtnVal;
     }
 
+    processRowClick(character) {
+        console.log(character);
+    }
+
     render() {
+        if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId} /> }
+
         return (
             <Container>
                 <Table responsive striped hover>
@@ -61,7 +69,7 @@ class Character extends Component {
                     <tbody>
                         {this.state.Characters.map((value, index) => {
                             return(
-                                <tr key={value.id}>
+                                <tr key={value.id} onClick={() => {this.processRowClick(value)}}>
                                     <td>{value.name}</td>
                                     <td>{value.species}</td>
                                     <td>{value.status}</td>
