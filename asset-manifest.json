@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/rick-and-morty-api-consumption/static/css/main.cfda8877.chunk.css",
-    "main.js": "/rick-and-morty-api-consumption/static/js/main.b4b0d5a6.chunk.js",
-    "main.js.map": "/rick-and-morty-api-consumption/static/js/main.b4b0d5a6.chunk.js.map",
+    "main.css": "/rick-and-morty-api-consumption/static/css/main.1bcfbf3c.chunk.css",
+    "main.js": "/rick-and-morty-api-consumption/static/js/main.cf7ca3b1.chunk.js",
+    "main.js.map": "/rick-and-morty-api-consumption/static/js/main.cf7ca3b1.chunk.js.map",
     "runtime-main.js": "/rick-and-morty-api-consumption/static/js/runtime-main.4b54212f.js",
     "runtime-main.js.map": "/rick-and-morty-api-consumption/static/js/runtime-main.4b54212f.js.map",
-    "static/js/2.bcade44c.chunk.js": "/rick-and-morty-api-consumption/static/js/2.bcade44c.chunk.js",
-    "static/js/2.bcade44c.chunk.js.map": "/rick-and-morty-api-consumption/static/js/2.bcade44c.chunk.js.map",
+    "static/css/2.833dd627.chunk.css": "/rick-and-morty-api-consumption/static/css/2.833dd627.chunk.css",
+    "static/js/2.f0f706ab.chunk.js": "/rick-and-morty-api-consumption/static/js/2.f0f706ab.chunk.js",
+    "static/js/2.f0f706ab.chunk.js.map": "/rick-and-morty-api-consumption/static/js/2.f0f706ab.chunk.js.map",
     "index.html": "/rick-and-morty-api-consumption/index.html",
-    "precache-manifest.30edb7ceaa172985ed2005d03ff741f3.js": "/rick-and-morty-api-consumption/precache-manifest.30edb7ceaa172985ed2005d03ff741f3.js",
+    "precache-manifest.1387648d8130ccbcf99e519e39bbc89a.js": "/rick-and-morty-api-consumption/precache-manifest.1387648d8130ccbcf99e519e39bbc89a.js",
     "service-worker.js": "/rick-and-morty-api-consumption/service-worker.js",
-    "static/css/main.cfda8877.chunk.css.map": "/rick-and-morty-api-consumption/static/css/main.cfda8877.chunk.css.map"
+    "static/css/2.833dd627.chunk.css.map": "/rick-and-morty-api-consumption/static/css/2.833dd627.chunk.css.map",
+    "static/css/main.1bcfbf3c.chunk.css.map": "/rick-and-morty-api-consumption/static/css/main.1bcfbf3c.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.4b54212f.js",
-    "static/js/2.bcade44c.chunk.js",
-    "static/css/main.cfda8877.chunk.css",
-    "static/js/main.b4b0d5a6.chunk.js"
+    "static/css/2.833dd627.chunk.css",
+    "static/js/2.f0f706ab.chunk.js",
+    "static/css/main.1bcfbf3c.chunk.css",
+    "static/js/main.cf7ca3b1.chunk.js"
   ]
 }
