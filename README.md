@@ -56,9 +56,17 @@ This is basically Bootstrap with React Components to make using Bootstrap even e
 # Concepts Covered in this Repo
 The main purpose of this repository is to cover as many concepts as I can regarding ReactJS to show my aptitude for the technology.
 
+* Routing
+* Using `npm` packages for additional, out-of-the-box functions
+* Calling an API and using promises to update the UI
+* Using variables based on if the environment is development or production
+
 # Files In This Repo
 ## App.js
 Main entry point for this app, includes routing objects
 
 ## Dashboard.js
 Main Dashboard or default route target
+
+## api_call/UrlEndPointGenerator.js
+Used to generate the URL endpoints that we call in a way that makes the code look a little more presentable (at least I think so)
