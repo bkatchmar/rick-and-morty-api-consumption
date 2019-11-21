@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { Button, Container, Row, Col, Table, Pagination, PaginationItem, PaginationLink, Input } from "reactstrap";
+import queryString from "query-string";
 import UrlEndPointGenerator from "./api_call/UrlEndPointGenerator";
 import "./Character.css"
 
@@ -12,8 +13,9 @@ class Character extends Component {
     }
 
     componentDidMount() {
-        let that = this;
-        that.processCharacterPageRequest().then(resp => { that.setState(resp); }).catch(error => { that.setState(error); });
+        let qsValues = queryString.parse(this.props.location.search);
+        let selectedPage = (qsValues.fromPage) ? parseInt(qsValues.fromPage) : 1;
+        this.getNewPage(selectedPage);
     }
 
     getNewPage(pg) {
@@ -61,7 +63,7 @@ class Character extends Component {
     }
 
     render() {
-        if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId} /> }
+        if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId + "?fromPage=" + this.state.CurrentPage} /> }
 
         return (
             <Container>

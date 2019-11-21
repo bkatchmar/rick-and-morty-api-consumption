@@ -50,6 +50,7 @@ npm install --save reactstrap react react-dom
 npm install --save react-router-dom
 npm install --save axios
 npm install --save-dev enzyme enzyme-adapter-react-16
+npm install --save query-string
 ```
 
 ## reactstrap
@@ -60,6 +61,9 @@ We use this to make our API calls.
 
 ## enzyme and enzyme-adapter-react-16
 DEV ONLY: Used for unit testing in a react environment.
+
+## query-string
+Read in query string parameters.
 
 # Concepts Covered in this Repo
 The main purpose of this repository is to cover as many concepts as I can regarding ReactJS to show my aptitude for the technology.
