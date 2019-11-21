@@ -23,13 +23,14 @@ class Character extends Component {
 
     processCharacterPageRequest(pageNum) {
         let that = this;
+        let currentNameSearch = this.state.NameSearch;
         if (!pageNum) { pageNum = 1; }
         
         return new Promise((resolve, reject) => {
             axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum,this.state.NameSearch)).then(resp => {
                 resolve({
                     "CharacterRedirectId" : 0,
-                    "NameSearch" : "",
+                    "NameSearch" : currentNameSearch,
                     "CurrentPage" : pageNum,
                     "Pages" : that.processNewPaginationArray(resp.data.info.pages),
                     "Characters" : resp.data.results
