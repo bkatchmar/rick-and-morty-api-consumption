@@ -26,7 +26,7 @@ class Character extends Component {
         if (!pageNum) { pageNum = 1; }
         
         return new Promise((resolve, reject) => {
-            axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum)).then(resp => {
+            axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum,this.state.NameSearch)).then(resp => {
                 resolve({
                     "CharacterRedirectId" : 0,
                     "NameSearch" : "",
@@ -66,9 +66,14 @@ class Character extends Component {
             <Container>
                 <Row className="name-search">
                     <Col md="11">
-                        <Input type="text" name="name-search" id="name-search" placeholder="Search By Name" />
+                        <Input type="text"
+                            name="name-search"
+                            id="name-search"
+                            placeholder="Search By Name"
+                            value={this.state.NameSearch}
+                            onChange={(event) => this.setState({ NameSearch : event.target.value })} />
                     </Col>
-                    <Col md="1"><Button color="primary">Search</Button></Col>
+                    <Col md="1"><Button color="primary" onClick={() => this.getNewPage()}>Search</Button></Col>
                 </Row>
                 <Table responsive striped hover>
                     <thead>

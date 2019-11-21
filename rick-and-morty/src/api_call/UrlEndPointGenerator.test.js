@@ -12,6 +12,7 @@ it("Test Different GetCharactersUrl()", () => {
 
 it("Test Different GetCharactersUrl() with a name", () => {
     expect(UrlEndPointGenerator.GetCharactersUrl(1,"krom")).toBe("https://rickandmortyapi.com/api/character/?page=1&name=krom");
+    expect(UrlEndPointGenerator.GetCharactersUrl(1,"")).toBe("https://rickandmortyapi.com/api/character/?page=1");
 });
 
 it("Test Different GetIndividualCharacterUrl(id)", () => {
