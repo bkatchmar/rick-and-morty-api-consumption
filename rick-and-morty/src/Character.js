@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { Container, Table, Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Button, Container, Row, Col, Table, Pagination, PaginationItem, PaginationLink, Input } from "reactstrap";
 import UrlEndPointGenerator from "./api_call/UrlEndPointGenerator";
 import "./Character.css"
 
 class Character extends Component {
     constructor(props) {
         super(props);
-        this.state = { "CharacterRedirectId" : 0, "CurrentPage" : 1, "Pages" : [1], "Characters" : [] };
+        this.state = { "CharacterRedirectId" : 0, "NameSearch" : "", "CurrentPage" : 1, "Pages" : [1], "Characters" : [] };
     }
 
     componentDidMount() {
@@ -29,6 +29,7 @@ class Character extends Component {
             axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum)).then(resp => {
                 resolve({
                     "CharacterRedirectId" : 0,
+                    "NameSearch" : "",
                     "CurrentPage" : pageNum,
                     "Pages" : that.processNewPaginationArray(resp.data.info.pages),
                     "Characters" : resp.data.results
@@ -37,6 +38,7 @@ class Character extends Component {
                 console.log(error);
                 reject({
                     "CharacterRedirectId" : 0,
+                    "NameSearch" : "",
                     "CurrentPage" : 1,
                     "Pages" : [1],
                     "Characters" : []
@@ -62,6 +64,12 @@ class Character extends Component {
 
         return (
             <Container>
+                <Row className="name-search">
+                    <Col md="11">
+                        <Input type="text" name="name-search" id="name-search" placeholder="Search By Name" />
+                    </Col>
+                    <Col md="1"><Button color="primary">Search</Button></Col>
+                </Row>
                 <Table responsive striped hover>
                     <thead>
                         <tr>

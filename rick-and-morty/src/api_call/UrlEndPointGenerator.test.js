@@ -10,7 +10,12 @@ it("Test Different GetCharactersUrl()", () => {
     expect(UrlEndPointGenerator.GetCharactersUrl(10)).toBe("https://rickandmortyapi.com/api/character/?page=10");
 });
 
+it("Test Different GetCharactersUrl() with a name", () => {
+    expect(UrlEndPointGenerator.GetCharactersUrl(1,"krom")).toBe("https://rickandmortyapi.com/api/character/?page=1&name=krom");
+});
+
 it("Test Different GetIndividualCharacterUrl(id)", () => {
     expect(UrlEndPointGenerator.GetIndividualCharacterUrl(2)).toBe("https://rickandmortyapi.com/api/character/2");
     expect(UrlEndPointGenerator.GetIndividualCharacterUrl(10)).toBe("https://rickandmortyapi.com/api/character/10");
 });
+

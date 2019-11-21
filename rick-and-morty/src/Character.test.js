@@ -1,7 +1,7 @@
 import React from "react";
 import Character from "./Character";
 import Adapter from "enzyme-adapter-react-16";
-import Enzyme, { shallow } from "enzyme";
+import Enzyme, { shallow, mount } from "enzyme";
 
 let wrapper;
 Enzyme.configure({ adapter: new Adapter() });
@@ -29,28 +29,8 @@ it("Uses instance to invoke methods directly", () => {
     expect(newPages).toHaveLength(5);
 });
 
-it("Gets data from the service URL with no page number", () => {
-    expect.assertions(3);
-    const instance = wrapper.instance();
-    
-    return instance.processCharacterPageRequest().then(resp => {
-        expect(resp.CurrentPage).toBe(1);
-        expect(resp.Characters.length).toBeGreaterThan(1);
-        expect(resp.Pages.length).toBeGreaterThan(1);
-    }).catch(error => {
-        expect(error.CurrentPage).toBe(1);
-        expect(resp.Characters.length).toBeGreaterThan(0);
-        expect(resp.Pages.length).toBeGreaterThan(0);
-    });
-});
-
-it("Gets data from the service URL with a page number", () => {
-    expect.assertions(1);
-    const instance = wrapper.instance();
-    
-    return instance.processCharacterPageRequest(3).then(resp => {
-        expect(resp.CurrentPage).toBe(3);
-    }).catch(error => {
-        expect(error.CurrentPage).toBe(1);
-    });
+it("Assert the correct number of buttons that show up", () => {
+    const component = mount(<Character />);
+    component.setState({ "CharacterRedirectId" : 0, "NameSearch" : "", "CurrentPage" : 1, "Pages" : [1,2,3,4,5], "Characters" : [] });
+    expect(component.find("ul.pagination button.page-link")).toHaveLength(5);
 });
