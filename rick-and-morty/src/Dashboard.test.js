@@ -1,5 +1,5 @@
 import React from "react";
-import App from "./App";
+import Dashboard from "./Dashboard";
 import Adapter from "enzyme-adapter-react-16";
 import Enzyme, { shallow } from "enzyme";
 
@@ -7,11 +7,11 @@ let wrapper;
 Enzyme.configure({ adapter: new Adapter() });
 
 beforeEach(() => {
-  wrapper = shallow(<App />);
+  wrapper = shallow(<Dashboard />);
 });
 
 it("Uses render with shallow and using object defined in beforeEach", () => {
   expect.anything(wrapper);
-  expect.anything(wrapper.find(".home-app"));
-  expect(wrapper.find(".home-app")).toHaveLength(1);
+  expect.anything(wrapper.find("div.text-center"));
+  expect(wrapper.find("div.text-center")).toHaveLength(1);
 });

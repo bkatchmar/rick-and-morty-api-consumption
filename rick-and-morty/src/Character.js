@@ -13,30 +13,35 @@ class Character extends Component {
 
     componentDidMount() {
         let that = this;
-        axios.get(UrlEndPointGenerator.GetCharactersUrl()).then(resp => {
-            that.setState({
-                "CharacterRedirectId" : 0,
-                "CurrentPage" : 1,
-                "Pages" : that.processNewPaginationArray(resp.data.info.pages),
-                "Characters" : resp.data.results
-            });
-        }).catch(error => {
-            console.log(error);
-        });
+        that.processCharacterPageRequest().then(resp => { that.setState(resp); }).catch(error => { that.setState(error); });
     }
 
     getNewPage(pg) {
         let that = this;
-        axios.get(UrlEndPointGenerator.GetCharactersUrl(pg)).then(resp => {
-            that.setState({
-                "CharacterRedirectId" : 0,
-                "CurrentPage" : pg,
-                "Pages" : that.processNewPaginationArray(resp.data.info.pages),
-                "Characters" : resp.data.results
+        that.processCharacterPageRequest(pg).then(resp => { that.setState(resp); }).catch(error => { that.setState(error); });
+    }
+
+    processCharacterPageRequest(pageNum) {
+        let that = this;
+        if (!pageNum) { pageNum = 1; }
+        
+        return new Promise((resolve, reject) => {
+            axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum)).then(resp => {
+                resolve({
+                    "CharacterRedirectId" : 0,
+                    "CurrentPage" : pageNum,
+                    "Pages" : that.processNewPaginationArray(resp.data.info.pages),
+                    "Characters" : resp.data.results
+                });
+            }).catch(error => {
+                console.log(error);
+                reject({
+                    "CharacterRedirectId" : 0,
+                    "CurrentPage" : 1,
+                    "Pages" : [1],
+                    "Characters" : []
+                });
             });
-        }).catch(error => {
-            console.log(error);
-            that.setState({ "CharacterRedirectId" : 0, "CurrentPage" : 1, "Pages" : [1], "Characters" : [] });
         });
     }
 

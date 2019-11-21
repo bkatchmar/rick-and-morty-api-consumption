@@ -49,6 +49,7 @@ npm install --save bootstrap
 npm install --save reactstrap react react-dom
 npm install --save react-router-dom
 npm install --save axios
+npm install --save-dev enzyme enzyme-adapter-react-16
 ```
 
 ## reactstrap
@@ -57,6 +58,9 @@ This is basically Bootstrap with React Components to make using Bootstrap even e
 ## axios
 We use this to make our API calls.
 
+## enzyme and enzyme-adapter-react-16
+DEV ONLY: Used for unit testing in a react environment.
+
 # Concepts Covered in this Repo
 The main purpose of this repository is to cover as many concepts as I can regarding ReactJS to show my aptitude for the technology.
 
@@ -64,8 +68,11 @@ The main purpose of this repository is to cover as many concepts as I can regard
 * Using `npm` packages for additional, out-of-the-box functions
 * Calling an API and using promises to update the UI
 * Using variables based on if the environment is development or production
+* Using Jest and Enzyme for a test driven development environment
 
 # Files In This Repo
+All files come with a `.test.js` version as development continues, we also write unit tests for almost everything we write for. I have an `npm start` running in one terminal and an `npm run tests` in another.
+
 ## App.js
 Main entry point for this app, includes routing objects
 
