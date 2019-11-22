@@ -20,7 +20,7 @@ class IndividualCharacter extends Component {
 
     processCharacterRequest(charId) {
         if (!charId) { charId = 0; }
-        let qsValues = queryString.parse(this.props.location.search);
+        let qsValues = this.processQueryString();
         
         return new Promise((resolve, reject) => {
             if (charId === 0) {
@@ -52,6 +52,12 @@ class IndividualCharacter extends Component {
                 });
             }
         });
+    }
+
+    processQueryString() {
+        let rtnVal = {};
+        rtnVal = (this.props && this.props.location && this.props.location.search) ? queryString.parse(this.props.location.search) : {};
+        return rtnVal;
     }
 
     render() {

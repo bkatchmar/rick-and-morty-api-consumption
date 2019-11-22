@@ -13,22 +13,22 @@ class Character extends Component {
     }
 
     componentDidMount() {
-        let qsValues = queryString.parse(this.props.location.search);
+        let qsValues = this.processQueryString();
         let selectedPage = (qsValues.fromPage) ? parseInt(qsValues.fromPage) : 1;
-        this.getNewPage(selectedPage);
+        this.getNewPage(selectedPage,true);
     }
 
-    getNewPage(pg) {
+    getNewPage(pg,includeQueryString) {
         let that = this;
-        that.processCharacterPageRequest(pg).then(resp => { that.setState(resp); }).catch(error => { that.setState(error); });
+        that.processCharacterPageRequest(pg,includeQueryString).then(resp => { that.setState(resp); }).catch(error => { that.setState(error); });
     }
 
-    processCharacterPageRequest(pageNum) {
+    processCharacterPageRequest(pageNum,includeNameQueryString) {
         let that = this;
         let currentNameSearch = this.state.NameSearch;
         if (!pageNum) { pageNum = 1; }
-        if (currentNameSearch === "") {
-            let qsValues = queryString.parse(this.props.location.search);
+        if (includeNameQueryString && currentNameSearch === "") {
+            let qsValues = this.processQueryString();
             currentNameSearch = (qsValues.nameSearch) ? qsValues.nameSearch : "";
         }
         
@@ -66,6 +66,12 @@ class Character extends Component {
         this.setState({ "CharacterRedirectId" : character.id });
     }
 
+    processQueryString() {
+        let rtnVal = {};
+        rtnVal = (this.props && this.props.location && this.props.location.search) ? queryString.parse(this.props.location.search) : {};
+        return rtnVal;
+    }
+
     render() {
         if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId + "?fromPage=" + this.state.CurrentPage + (this.state.NameSearch === "" ? "" : "&nameSearch=" + this.state.NameSearch)} /> }
 
@@ -80,7 +86,7 @@ class Character extends Component {
                             value={this.state.NameSearch}
                             onChange={(event) => this.setState({ NameSearch : event.target.value })} />
                     </Col>
-                    <Col md="1"><Button color="primary" onClick={() => this.getNewPage()}>Search</Button></Col>
+                    <Col md="1"><Button color="primary" onClick={() => this.getNewPage(1,false)}>Search</Button></Col>
                 </Row>
                 <Table responsive striped hover>
                     <thead>
@@ -108,7 +114,7 @@ class Character extends Component {
                     {this.state.Pages.map((value, index) => {
                         return (
                             <PaginationItem key={index} active={this.state.CurrentPage === value}>
-                                <PaginationLink onClick={() => this.getNewPage(value)}>{value}</PaginationLink>
+                                <PaginationLink onClick={() => this.getNewPage(value,true)}>{value}</PaginationLink>
                             </PaginationItem>
                         )
                     })}
