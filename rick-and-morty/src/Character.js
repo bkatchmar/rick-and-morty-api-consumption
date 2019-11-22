@@ -114,7 +114,7 @@ class Character extends Component {
                     {this.state.Pages.map((value, index) => {
                         return (
                             <PaginationItem key={index} active={this.state.CurrentPage === value}>
-                                <PaginationLink onClick={() => this.getNewPage(value,true)}>{value}</PaginationLink>
+                                <PaginationLink onClick={() => this.getNewPage(value,false)}>{value}</PaginationLink>
                             </PaginationItem>
                         )
                     })}

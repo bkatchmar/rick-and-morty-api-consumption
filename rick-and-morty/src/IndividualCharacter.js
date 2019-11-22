@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
+import { Container, Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 import axios from "axios";
-import queryString from "query-string";
 import UrlEndPointGenerator from "./api_call/UrlEndPointGenerator";
 import "./IndividualCharacter.css";
 
 class IndividualCharacter extends Component {
     constructor(props) {
         super(props);
-        this.state = { "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1, "NameSearch" : "" };
+        this.state = { "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "" };
     }
 
     componentDidMount() {
@@ -20,49 +18,34 @@ class IndividualCharacter extends Component {
 
     processCharacterRequest(charId) {
         if (!charId) { charId = 0; }
-        let qsValues = this.processQueryString();
         
         return new Promise((resolve, reject) => {
             if (charId === 0) {
-                resolve({ "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1, "NameSearch" : "" });
+                resolve({ "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "" });
             } else {
                 axios.get(UrlEndPointGenerator.GetIndividualCharacterUrl(charId)).then(resp => {
                     resolve({
-                        "BackToList" : false,
                         "ImageExists" : (resp.data.image && resp.data.image !== ""),
                         "ImageUrl" : resp.data.image,
                         "Name": resp.data.name,
                         "Gender" : resp.data.gender,
-                        "Species" : resp.data.species,
-                        "FromPage" : (qsValues.fromPage) ? qsValues.fromPage : 1,
-                        "NameSearch" : (qsValues.nameSearch) ? qsValues.nameSearch : ""
+                        "Species" : resp.data.species
                     });
                 }).catch(error => {
                     console.log(error);
                     reject({
-                        "BackToList" : false,
                         "ImageExists" : false,
                         "ImageUrl" : "",
                         "Name": "",
                         "Gender" : "",
-                        "Species" : "",
-                        "FromPage" : 1,
-                        "NameSearch" : ""
+                        "Species" : ""
                     });
                 });
             }
         });
     }
 
-    processQueryString() {
-        let rtnVal = {};
-        rtnVal = (this.props && this.props.location && this.props.location.search) ? queryString.parse(this.props.location.search) : {};
-        return rtnVal;
-    }
-
     render() {
-        if (this.state.BackToList) { return <Redirect to={"/characters/?fromPage=" + this.state.FromPage + (this.state.NameSearch === "" ? "" : "&nameSearch=" + this.state.NameSearch)} /> }
-        
         return (
             <Container className="text-center individual-character">
                 <Row>
@@ -74,7 +57,6 @@ class IndividualCharacter extends Component {
                             <CardBody>
                                 <CardTitle>{this.state.Name}</CardTitle>
                                 <CardSubtitle>{this.state.Gender}{' '}{this.state.Species}</CardSubtitle>
-                                <Button color="primary" onClick={() => this.setState({"BackToList" : true})}>Back</Button>
                             </CardBody>
                         </Card>
                     </Col>
