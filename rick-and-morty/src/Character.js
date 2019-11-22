@@ -27,9 +27,13 @@ class Character extends Component {
         let that = this;
         let currentNameSearch = this.state.NameSearch;
         if (!pageNum) { pageNum = 1; }
+        if (currentNameSearch === "") {
+            let qsValues = queryString.parse(this.props.location.search);
+            currentNameSearch = (qsValues.nameSearch) ? qsValues.nameSearch : "";
+        }
         
         return new Promise((resolve, reject) => {
-            axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum,this.state.NameSearch)).then(resp => {
+            axios.get(UrlEndPointGenerator.GetCharactersUrl(pageNum,currentNameSearch)).then(resp => {
                 resolve({
                     "CharacterRedirectId" : 0,
                     "NameSearch" : currentNameSearch,
@@ -63,7 +67,7 @@ class Character extends Component {
     }
 
     render() {
-        if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId + "?fromPage=" + this.state.CurrentPage} /> }
+        if (this.state.CharacterRedirectId > 0) { return <Redirect to={"/character/" + this.state.CharacterRedirectId + "?fromPage=" + this.state.CurrentPage + (this.state.NameSearch === "" ? "" : "&nameSearch=" + this.state.NameSearch)} /> }
 
         return (
             <Container>

@@ -9,7 +9,7 @@ import "./IndividualCharacter.css";
 class IndividualCharacter extends Component {
     constructor(props) {
         super(props);
-        this.state = { "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1 };
+        this.state = { "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1, "NameSearch" : "" };
     }
 
     componentDidMount() {
@@ -24,7 +24,7 @@ class IndividualCharacter extends Component {
         
         return new Promise((resolve, reject) => {
             if (charId === 0) {
-                resolve({ "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1 });
+                resolve({ "BackToList" : false, "ImageExists" : false, "ImageUrl" : "", "Name": "", "Gender" : "", "Species" : "", "FromPage" : 1, "NameSearch" : "" });
             } else {
                 axios.get(UrlEndPointGenerator.GetIndividualCharacterUrl(charId)).then(resp => {
                     resolve({
@@ -34,7 +34,8 @@ class IndividualCharacter extends Component {
                         "Name": resp.data.name,
                         "Gender" : resp.data.gender,
                         "Species" : resp.data.species,
-                        "FromPage" : (qsValues.fromPage) ? qsValues.fromPage : 1
+                        "FromPage" : (qsValues.fromPage) ? qsValues.fromPage : 1,
+                        "NameSearch" : (qsValues.nameSearch) ? qsValues.nameSearch : ""
                     });
                 }).catch(error => {
                     console.log(error);
@@ -45,7 +46,8 @@ class IndividualCharacter extends Component {
                         "Name": "",
                         "Gender" : "",
                         "Species" : "",
-                        "FromPage" : 1
+                        "FromPage" : 1,
+                        "NameSearch" : ""
                     });
                 });
             }
@@ -53,7 +55,7 @@ class IndividualCharacter extends Component {
     }
 
     render() {
-        if (this.state.BackToList) { return <Redirect to={"/characters/?fromPage=" + this.state.FromPage} /> }
+        if (this.state.BackToList) { return <Redirect to={"/characters/?fromPage=" + this.state.FromPage + (this.state.NameSearch === "" ? "" : "&nameSearch=" + this.state.NameSearch)} /> }
         
         return (
             <Container className="text-center individual-character">
