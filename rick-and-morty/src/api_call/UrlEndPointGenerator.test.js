@@ -19,3 +19,9 @@ it("Test Different GetIndividualCharacterUrl(id)", () => {
     expect(UrlEndPointGenerator.GetIndividualCharacterUrl(2)).toBe("https://localhost:8080/api/character/2");
     expect(UrlEndPointGenerator.GetIndividualCharacterUrl(10)).toBe("https://localhost:8080/api/character/10");
 });
+
+it("Test Episode URL", () => {
+    expect(UrlEndPointGenerator.GetEpisodesUrl()).toBe("https://localhost:8080/api/episode");
+    expect(UrlEndPointGenerator.GetEpisodesUrl(2)).toBe("https://localhost:8080/api/episode/?page=2");
+    expect(UrlEndPointGenerator.GetEpisodesUrl(10)).toBe("https://localhost:8080/api/episode/?page=10");
+});

@@ -15,6 +15,10 @@ class UrlEndPointGenerator {
     static GetIndividualCharacterUrl(id) {
         return UrlEndPointGenerator.BaseEndPointUrl() + "/character/" + id;
     }
+
+    static GetEpisodesUrl(page) {
+        return UrlEndPointGenerator.BaseEndPointUrl() + "/episode" + (page ? `/?page=${page}` : "");
+    }
 }
 
 export default UrlEndPointGenerator;

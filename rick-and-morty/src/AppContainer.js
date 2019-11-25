@@ -6,7 +6,7 @@ import queryString from "query-string";
 class AppContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { "CharactersLink" : "#/characters", "EpisodesLink" : "#" };
+        this.state = { "CharactersLink" : "#/characters", "EpisodesLink" : "#/episodes" };
     }
 
     componentDidMount() {
@@ -17,7 +17,6 @@ class AppContainer extends Component {
     }
     componentWillUnmount() { this.unlisten(); }
 
-    // TODO: Write an extension of Component and have all front end classes use this new extension, include this method
     processQueryString(location) {
         let rtnVal = {};
 
@@ -40,7 +39,7 @@ class AppContainer extends Component {
         } else if (qsValues.nameSearch) {
             extraCharUrl = `/?nameSearch=${qsValues.nameSearch}`;
         }
-        this.setState({ "CharactersLink" : (charUrl + extraCharUrl), "EpisodesLink" : "#" });
+        this.setState({ "CharactersLink" : (charUrl + extraCharUrl), "EpisodesLink" : "#/episodes" });
     }
     
     render() {
