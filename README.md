@@ -80,14 +80,20 @@ All files come with a `.test.js` version as development continues, we also write
 ## App.js
 Main entry point for this app, includes routing objects
 
+## AppContainer.js
+Used to track the URL history of the app and update higher level links depending on what the user does.
+
 ## Dashboard.js
 Main Dashboard or default route target
 
+## Episode.js
+Table view of the episodes.
+
 ## Character.js
-Table view of all Rick and Morty characters
+Table view of all Rick and Morty characters.
 
 ## IndividualCharacter.js
-View for an individual character, using react card
+View for an individual character, using bootstrap card.
 
 ## api_call/UrlEndPointGenerator.js
-Used to generate the URL endpoints that we call in a way that makes the code look a little more presentable (at least I think so)
+Used to generate the URL endpoints that we call in a way that makes the code look a little more presentable (at least I think so).
